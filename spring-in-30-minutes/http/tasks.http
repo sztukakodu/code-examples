@@ -1,0 +1,26 @@
+###
+POST http://localhost:8080/projects?name=Zakup nowego laptopta
+
+
+###
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "title": "Zapłacić rachunku",
+  "priority": true
+}
+
+
+###
+
+GET http://localhost:8080/tasks
+
+###
+GET http://localhost:8080/projects/1
+
+###
+GET http://localhost:8080/projects/priority
+
+###
+GET http://localhost:8080/projects/inbox
