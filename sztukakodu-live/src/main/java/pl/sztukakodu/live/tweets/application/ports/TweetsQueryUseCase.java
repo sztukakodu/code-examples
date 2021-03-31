@@ -1,11 +1,11 @@
 package pl.sztukakodu.live.tweets.application.ports;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import pl.sztukakodu.live.tweets.domain.Tweet;
-
-import java.util.List;
 
 public interface TweetsQueryUseCase {
 
-    List<Tweet> fetchAll();
+    Page<Tweet> fetchAll(Pageable pageable);
 
 }

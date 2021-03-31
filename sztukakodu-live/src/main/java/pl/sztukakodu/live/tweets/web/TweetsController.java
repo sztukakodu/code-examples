@@ -2,6 +2,9 @@ package pl.sztukakodu.live.tweets.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.sztukakodu.live.tweets.application.ports.TweetsGenerateUseCase;
@@ -20,8 +23,8 @@ class TweetsController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public TweetsResponse getTweets() {
-        return new TweetsResponse(tweetsQuery.fetchAll());
+    public Page<Tweet> getTweets(Pageable pageable) {
+        return tweetsQuery.fetchAll(pageable);
     }
 
     @PostMapping("/generate/{size}")

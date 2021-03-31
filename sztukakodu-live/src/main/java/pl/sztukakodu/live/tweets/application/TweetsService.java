@@ -2,6 +2,8 @@ package pl.sztukakodu.live.tweets.application;
 
 import com.github.javafaker.Faker;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.sztukakodu.live.tweets.application.ports.TweetsGenerateUseCase;
 import pl.sztukakodu.live.tweets.application.ports.TweetsQueryUseCase;
@@ -11,7 +13,6 @@ import pl.sztukakodu.live.tweets.domain.Tweet;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -22,8 +23,8 @@ class TweetsService implements TweetsQueryUseCase, TweetsGenerateUseCase {
     private final TweetsRepository repository;
 
     @Override
-    public List<Tweet> fetchAll() {
-        return repository.findAll();
+    public Page<Tweet> fetchAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override
