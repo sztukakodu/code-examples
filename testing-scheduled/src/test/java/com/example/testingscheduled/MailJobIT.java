@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest(properties = {
-    "app.mail-service.rate=PT1S"
+    "app.mail-service.cron=*/3 * * * * *"
 })
 class MailJobIT {
 

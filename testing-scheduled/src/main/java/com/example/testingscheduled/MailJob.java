@@ -9,10 +9,7 @@ import org.springframework.stereotype.Component;
 class MailJob {
     private final MailService mailService;
 
-    @Scheduled(
-        initialDelayString = "${app.mail-service.rate}",
-        fixedRateString = "${app.mail-service.rate}"
-    )
+    @Scheduled(cron = "${app.mail-service.cron}")
     public void run() {
         mailService.sendEmails();
     }
