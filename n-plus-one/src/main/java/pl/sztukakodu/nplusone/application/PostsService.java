@@ -7,6 +7,7 @@ import pl.sztukakodu.nplusone.db.PostRepository;
 import pl.sztukakodu.nplusone.domain.Comment;
 import pl.sztukakodu.nplusone.domain.Post;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,5 +31,13 @@ public class PostsService {
 
     public Optional<Post> getById(Long id) {
         return repository.findById(id);
+    }
+
+    public List<Post> findAll() {
+        return repository.findAll();
+    }
+
+    public List<Post> findAllEager() {
+        return repository.findAllJoinComments();
     }
 }

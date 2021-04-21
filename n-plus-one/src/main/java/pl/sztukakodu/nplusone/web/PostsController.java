@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.sztukakodu.nplusone.application.PostsService;
 import pl.sztukakodu.nplusone.domain.Post;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -19,8 +19,12 @@ class PostsController {
         postsService.init(10, 25);
     }
 
-    @GetMapping("/{id}")
-    public Optional<Post> getById(@PathVariable Long id) {
-        return postsService.getById(id);
+    @GetMapping
+    public List<Post> getPosts(@RequestParam(defaultValue = "false") boolean eager) {
+        if (eager) {
+            return postsService.findAllEager();
+        } else {
+            return postsService.findAll();
+        }
     }
 }
