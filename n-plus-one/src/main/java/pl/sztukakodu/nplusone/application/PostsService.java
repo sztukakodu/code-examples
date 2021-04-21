@@ -12,7 +12,11 @@ import java.util.List;
 public class PostsService {
     private final PostRepository repository;
 
-    public List<Post> findAll() {
-        return repository.findAll();
+    public List<Post> findAll(boolean eager) {
+        if(eager) {
+            return repository.findAllEager();
+        } else {
+            return repository.findAll();
+        }
     }
 }

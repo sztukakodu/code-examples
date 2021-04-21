@@ -18,4 +18,8 @@ public class CommentsService {
     public List<Comment> getAll() {
         return repository.findAll();
     }
+
+    public Page<Comment> getPage(Pageable pageable) {
+        return repository.findAllBy(pageable);
+    }
 }
