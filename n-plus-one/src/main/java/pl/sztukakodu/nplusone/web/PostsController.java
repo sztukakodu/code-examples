@@ -14,11 +14,6 @@ class PostsController {
 
     private final PostsService postsService;
 
-    @PostMapping
-    public void init() {
-        postsService.init(10, 25);
-    }
-
     @GetMapping
     public List<Post> getPosts(@RequestParam(defaultValue = "false") boolean eager) {
         if (eager) {

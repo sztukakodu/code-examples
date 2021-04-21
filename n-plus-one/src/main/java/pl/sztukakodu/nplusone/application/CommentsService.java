@@ -1,6 +1,8 @@
 package pl.sztukakodu.nplusone.application;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.sztukakodu.nplusone.db.CommentsRepository;
 import pl.sztukakodu.nplusone.domain.Comment;
@@ -21,4 +23,8 @@ public class CommentsService {
         return repository.findAllBy();
     }
 
+    public Page<Comment> getPage(Pageable pageable) {
+//        return repository.findAll(pageable);
+        return repository.findAllBy(pageable);
+    }
 }

@@ -14,6 +14,7 @@ public class Comment {
     @GeneratedValue
     private Long id;
 
+    @Column(length = 2048)
     private String content;
 
     @ManyToOne

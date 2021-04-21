@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @Query("SELECT p FROM Post p JOIN FETCH p.comments")
+    @Query("SELECT DISTINCT p FROM Post p JOIN FETCH p.comments")
     List<Post> findAllJoinComments();
 
 
