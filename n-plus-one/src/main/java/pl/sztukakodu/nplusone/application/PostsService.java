@@ -15,8 +15,4 @@ public class PostsService {
     public List<Post> findAll() {
         return repository.findAll();
     }
-
-    public List<Post> findAllEager() {
-        return repository.findAllJoinComments();
-    }
 }

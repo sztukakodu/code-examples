@@ -16,7 +16,12 @@ class InitController {
 
     @PostMapping
     public void init() {
-        service.init(10, 25);
+        service.init(5, 10);
+    }
+
+    @DeleteMapping
+    public void clear() {
+        service.clear();
     }
 
 }

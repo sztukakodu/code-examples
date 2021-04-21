@@ -18,13 +18,4 @@ public class CommentsService {
     public List<Comment> getAll() {
         return repository.findAll();
     }
-
-    public List<Comment> getAllEager() {
-        return repository.findAllBy();
-    }
-
-    public Page<Comment> getPage(Pageable pageable) {
-//        return repository.findAll(pageable);
-        return repository.findAllBy(pageable);
-    }
 }

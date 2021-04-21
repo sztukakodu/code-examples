@@ -10,10 +10,4 @@ import java.util.List;
 
 public interface CommentsRepository extends JpaRepository<Comment, Long> {
 
-    @EntityGraph(attributePaths = {"post"})
-    List<Comment> findAllBy();
-
-    @EntityGraph(attributePaths = {"post"})
-    Page<Comment> findAllBy(Pageable pageable);
-
 }

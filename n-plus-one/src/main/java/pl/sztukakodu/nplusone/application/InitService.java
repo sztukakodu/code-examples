@@ -7,9 +7,6 @@ import pl.sztukakodu.nplusone.db.PostRepository;
 import pl.sztukakodu.nplusone.domain.Comment;
 import pl.sztukakodu.nplusone.domain.Post;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
 @AllArgsConstructor
 public class InitService {
@@ -22,11 +19,14 @@ public class InitService {
             post.setContent(faker.lorem().paragraph());
             for (int j = 0; j < comments; j++) {
                 var comment = new Comment();
-                comment.setContent(faker.chuckNorris().fact());
+                comment.setComment(faker.chuckNorris().fact());
                 post.addComment(comment);
             }
             repository.save(post);
         }
     }
 
+    public void clear() {
+        repository.deleteAll();
+    }
 }
