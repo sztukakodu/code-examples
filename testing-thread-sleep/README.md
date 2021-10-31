@@ -1,8 +1,4 @@
-# How to test Spring @Scheduled annotation?
-
-Example with
-1) unit test - `MailJobTest`
-2) integration test - `MailJobIT`
+# How to test Thread.sleep in Java
 
 Author:
 * Dariusz Mydlarz - [sztukakodu.pl](https://sztukakodu.pl)
