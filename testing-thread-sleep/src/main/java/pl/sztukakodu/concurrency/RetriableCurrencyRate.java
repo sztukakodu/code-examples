@@ -8,15 +8,16 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class RetriableCurrencyRate implements CurrencyRate {
     private final CurrencyRate origin;
+    private final Sleeper sleeper;
+    private int retriesLimit;
 
     @Override
     @SneakyThrows
     public BigDecimal rate(String from, String to) {
-        // retry 3 times after 1 second
         BigDecimal rate = origin.rate(from, to);
         int retries = 0;
-        while(rate == null && retries < 3) {
-            Thread.sleep(100);
+        while (rate == null && retries < retriesLimit) {
+            sleeper.sleep(1_000);
             rate = origin.rate(from, to);
             ++retries;
         }

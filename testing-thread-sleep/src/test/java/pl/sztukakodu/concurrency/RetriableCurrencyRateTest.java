@@ -9,8 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RetriableCurrencyRateTest {
 
+    int retriesLimit = 3;
+    CountingSleeper sleeper = new CountingSleeper(
+        new NoopSleeper()
+    );
     RetriableCurrencyRate sut = new RetriableCurrencyRate(
-        new FailingCurrencyRate()
+        new FailingCurrencyRate(),
+        sleeper,
+        retriesLimit
     );
 
     @Test
@@ -20,7 +26,7 @@ class RetriableCurrencyRateTest {
 
         // then
         assertNull(rate);
-        // and 3 retries each after 100ms
+        assertEquals(retriesLimit, sleeper.count());
     }
 
 }
