@@ -2,8 +2,8 @@ package pl.sztukakodu.lazyinit.service.ports;
 
 import pl.sztukakodu.lazyinit.domain.Team;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface ReadTeamUseCase {
-    Optional<Team> findByName(String name);
+    List<Team> getAll();
 }
