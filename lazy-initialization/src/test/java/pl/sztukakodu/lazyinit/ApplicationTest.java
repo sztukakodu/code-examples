@@ -1,14 +1,16 @@
 package pl.sztukakodu.lazyinit;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.transaction.Transactional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 class ApplicationTest {
@@ -29,6 +31,28 @@ class ApplicationTest {
     void throwsLazyInitException() {
         // when
         Blogpost blogpost = repository.getById(1L);
+
+        // then
+        assertThrows(
+            LazyInitializationException.class,
+            () -> blogpost.getComments().size()
+        );
+    }
+
+    @Test
+    @Transactional
+    void fetchesBlogpostWithCommentsInTransaction() {
+        // when
+        Blogpost blogpost = repository.getById(1L);
+
+        // then
+        assertEquals(1, blogpost.getComments().size());
+    }
+
+    @Test
+    void fetchesBlogpostWithCommentsInSingleCall() {
+        // when
+        Blogpost blogpost = repository.getByIdWithComments(1L);
 
         // then
         assertEquals(1, blogpost.getComments().size());
