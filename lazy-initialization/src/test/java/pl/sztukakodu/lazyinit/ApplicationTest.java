@@ -58,4 +58,6 @@ class ApplicationTest {
         assertEquals(1, blogpost.getComments().size());
     }
 
+    // TODO-Darek: entity graphs
+    // TODO-Darek: FetchType.EAGER
 }
