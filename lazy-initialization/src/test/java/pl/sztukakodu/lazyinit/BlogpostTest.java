@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-class ApplicationTest {
+class BlogpostTest {
 
     @Autowired
     BlogpostRepository repository;
@@ -23,14 +23,14 @@ class ApplicationTest {
         Set<Comment> comments = Set.of(
             new Comment(1L, "Frodo Baggins", "One To Rule Them All!")
         );
-        Blogpost blogpost = new Blogpost(1L, "Who is John Galt?", "Lorem Ipsum", comments);
+        Blogpost blogpost = new Blogpost(1L, "Atlas Shrugged", "Who is John Galt?", comments);
         repository.save(blogpost);
     }
 
     @Test
     void throwsLazyInitException() {
         // when
-        Blogpost blogpost = repository.getById(1L);
+        Blogpost blogpost = repository.findById(1L).get();
 
         // then
         assertThrows(
@@ -58,6 +58,30 @@ class ApplicationTest {
         assertEquals(1, blogpost.getComments().size());
     }
 
-    // TODO-Darek: entity graphs
-    // TODO-Darek: FetchType.EAGER
+    @Test
+    void fetchesBlogpostWithCommentsGraph() {
+        // when
+        Blogpost blogpost = repository.getBlogpostGraphById(1L);
+
+        // then
+        assertEquals(1, blogpost.getComments().size());
+    }
+
+    @Test
+    void fetchesBlogpostWithCommentsNamedGraph() {
+        // when
+        Blogpost blogpost = repository.getBlogpostNamedGraphById(1L);
+
+        // then
+        assertEquals(1, blogpost.getComments().size());
+    }
+
+    @Test
+    void fetchesCommentsEagerly() {
+        // when
+        Blogpost blogpost = repository.findById(1L).get();
+
+        // then
+        assertEquals(1, blogpost.getComments().size());
+    }
 }
