@@ -4,11 +4,12 @@ import java.util.concurrent.TimeUnit;
 
 // Double-Check Locking Algorithm
 class NetworkService {
+    private Object lock = new Object();
     private volatile String bandwidth;
 
     public String getBandwidth() {
         if(bandwidth == null) {
-            synchronized (this) {
+            synchronized (lock) {
                 if(bandwidth == null) {
                     bandwidth = calculateBandwidth();
                 }
