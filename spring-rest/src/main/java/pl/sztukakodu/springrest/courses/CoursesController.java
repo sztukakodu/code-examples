@@ -1,25 +1,24 @@
-package pl.sztukakodu.springrest;
+package pl.sztukakodu.springrest.courses;
 
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
+import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/courses")
 class CoursesController {
 
-    private final Map<Long, Course> courses = Map.of(
-        1L, new Course("Szkoła Springa"),
-        2L, new Course("Szkoła Monitoringu"),
-        3L, new Course("Kurs Współbieżności")
-    );
+    private final CoursesRepository repository;
 
+    // TODO-Darek: add nice response envelope
     @GetMapping
-    public Map<Long, Course> index() {
-        return courses;
+    public List<Course> index() {
+        return repository.index();
     }
 
     @PutMapping("/{id}")
