@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pl.sztukakodu</groupId>
-    <artifactId>live</artifactId>
+    <artifactId>pageable</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>live</name>
     <description>Sztuka Kodu Live Playground</description>

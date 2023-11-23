@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>pl.dworld</groupId>
-	<artifactId>done</artifactId>
+	<artifactId>spring-in-30-minutes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>.Done - Getting Thins DONE</name>
 	<description>Demo project for Spring Boot</description>
